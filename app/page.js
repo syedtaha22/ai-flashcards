@@ -6,18 +6,20 @@ import { styled } from "@mui/system";
 import { doc, collection, getDoc, writeBatch } from "firebase/firestore"; // Import Firebase functions
 import { firestore } from '@/firebase';
 
-// Blueish background
-const Background = styled(Box)({
-  backgroundColor: "#F0F4FF", // Uncomment for a bluish shade
-  // backgroundColor: "#FFEFD5", // Warm yellowish shade (comment this if using bluish shade)
+// Responsive background
+const Background = styled(Box)(({ theme }) => ({
+  backgroundColor: "#F0F4FF",
   color: "#1F2023",
-  height: "100vh",
+  minHeight: "100vh", // Adjust to minHeight to prevent the white background issue on scroll
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
   padding: "20px",
-});
+  [theme.breakpoints.down('sm')]: {
+    padding: "10px",
+  },
+}));
 
 const Flashcard = styled(Card)(({ theme }) => ({
   perspective: "1000px",
@@ -28,6 +30,10 @@ const Flashcard = styled(Card)(({ theme }) => ({
     position: "relative",
     height: "150px",
     width: "200px",
+    [theme.breakpoints.down('sm')]: {
+      height: "120px", // Adjust for smaller screens
+      width: "150px",
+    },
   },
   '&.flipped .MuiCardContent-root': {
     transform: "rotateY(180deg)",
@@ -47,14 +53,15 @@ const Flashcard = styled(Card)(({ theme }) => ({
     textAlign: "center",
   },
   '& .front': {
-    backgroundColor: "#121212", // Dark background for the front
-    color: "#FFFFFF", // White text for the front
+    backgroundColor: "#121212",
+    color: "#FFFFFF",
+
   },
   '& .back': {
-    backgroundColor: "#FFFFFF", // White background for the back
-    color: "#121212", // Dark text for the back
+    backgroundColor: "#FFFFFF",
+    color: "#121212",
     transform: "rotateY(180deg)",
-    fontSize: "0.875rem", // Reduced font size to fit longer text
+    fontSize: "0.875rem",
   },
 }));
 
@@ -173,16 +180,14 @@ export default function Page() {
               },
             }}
             sx={{
-
               "& .MuiOutlinedInput-root": {
                 "&.Mui-focused fieldset": {
-                  border: "2px solid #1A1A1A", // Larger border on hover
-                  margin: "-2px", // Offset the margin to make the border appear larger
-                  borderRadius: "50px", // Keep the corners rounded
+                  border: "2px solid #1A1A1A",
+                  margin: "-2px",
+                  borderRadius: "50px",
                 },
               },
             }}
-
           />
           <Button
             variant="contained"
@@ -192,6 +197,7 @@ export default function Page() {
               color: "#FAFAFA",
               marginLeft: "10px",
               borderRadius: "50px",
+              textTransform: "none",
               '&:hover': {
                 backgroundColor: "#1A1A1A",
               },
