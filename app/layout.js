@@ -1,8 +1,15 @@
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 
-const inter = Inter({ subsets: ["latin"] });
+
+
+// Import the Poppins font with necessary weights
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "700"]
+});
+
 
 export const metadata = {
   title: "AI Flashcards",
@@ -13,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={poppins.className}>{children}</body>
       </html>
     </ClerkProvider>
   );
