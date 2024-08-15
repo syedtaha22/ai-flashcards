@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import { firestore } from "@/firebase";
 import { TextField, Button, Box, Typography } from "@mui/material";
 import { styled } from '@mui/system';
+import validator from 'validator';
 
 // Styled Button with Gradient and Rounded Corners
 const GradientButton = styled(Button)({
@@ -22,37 +23,51 @@ const RoundedTextField = styled(TextField)({
 });
 
 export default function WaitlistPage() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
   const handleJoinWaitlist = async () => {
     setError(""); // Clear any previous errors
 
-    if (!/^[\w.-]+@gmail\.com$/.test(email)) {
-      setError("Please enter a valid Gmail address.");
+    // Validate name and email
+    if (!name.trim()) {
+      setError("Name cannot be empty.");
+      return;
+    }
+    if (!validator.isEmail(email)) {
+      setError("Please enter a valid email address.");
       return;
     }
 
-    const docRef = doc(firestore, "waitlist-flash-ai", "gmails");
+    const docRef = doc(firestore, "waitlist-flash-ai", "waitlist-entries");
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      const data = docSnap.data();
-      const updatedEmails = [...data.gmails, email];
-      await setDoc(docRef, { gmails: updatedEmails });
+      await updateDoc(docRef, {
+        contacts: arrayUnion({ name, email })
+      });
     } else {
-      await setDoc(docRef, { gmails: [email] });
+      await setDoc(docRef, { contacts: [{ name, email }] });
     }
 
     setError("You have successfully joined the waitlist!");
+    setName("");
     setEmail("");
   };
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '50px' }}>
-      <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '20px' }}>
         <RoundedTextField
-          label="Enter your Gmail"
+          label="Enter your Name"
+          variant="outlined"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          sx={{ width: '300px', marginRight: '10px' }}
+        />
+        <RoundedTextField
+          label="Enter your Email"
           variant="outlined"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
