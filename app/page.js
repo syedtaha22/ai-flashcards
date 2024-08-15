@@ -6,6 +6,7 @@ import Image from 'next/image';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import SvgIcon from '@mui/material/SvgIcon'
 import DoneIcon from '@mui/icons-material/Done';
+import styled from '@emotion/styled';
 
 
 // Bolt Icon for Feature section
@@ -47,6 +48,8 @@ const SparkleIcon = (props) => {
   );
 };
 
+
+
 //Flash icon for Header section 
 const FlashIcon = (props) => {
   return (
@@ -68,21 +71,45 @@ const FlashIcon = (props) => {
   )
 }
 
+const GradientLayer = styled('div')({
+  position: 'absolute',
+  width: '100%', // Ensure the box takes full width
+  height: '100%',
+  top: 0,
+  left: 0,
+  zIndex: 1,
+  background: 'radial-gradient(circle at top left, rgba(255,0,150,0.5), transparent), radial-gradient(circle at bottom right, rgba(0,205,255,0.5), transparent)',
+  opacity: 0.6,
+  filter: 'blur(50px)',
+});
+
+const BackgroundLayer = styled('div')({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%', // Ensure the box takes full width
+  height: '100%',
+  backgroundColor: 'black',
+  zIndex: 0,
+});
+
+
 
 ///////////////////////// Main Component /////////////////////////////////////
 const LandingPage = () => {
 
   return (
-    <Box
-    >
+    <Box>
+      {/* /////////// Header Section /////////////////////////////////////////////////////////////////// */}
 
 
-{/* /////////////////////////////////////////// Header Section /////////////////////////////////////////////////////////////////// */}
-
-
-      <AppBar position="static"
+      <AppBar position="sticky"
         sx={{
-          backgroundImage: `url('/hbg.jpg')`,  // header glassy Background Image 
+          // backgroundImage: `url('/hbg.jpg')`,  // header glassy Background Image 
+          backgroundColor: 'rgba(0, 0, 0, 0.2)',
+          backdropFilter: 'blur(10px)',
+          boxShadow: 'none',
+          color: 'white'
         }}
       >
         <Toolbar sx={{
@@ -92,7 +119,7 @@ const LandingPage = () => {
         }}>
 
           {/* Logo + FlashAI Text */}
-          <Link href="page.js" sx={{ color: 'black', textDecoration: 'none' }}>
+          <Link href="page.js" sx={{ color: 'white', textDecoration: 'none' }}>
             <Box sx={{
               ml: '1px',
               display: 'flex',
@@ -117,9 +144,8 @@ const LandingPage = () => {
             gap: { xs: 0.1, lg: 2 }  // Responsive gap between buttons
           }}>
             <Button
-              color='inherit'
               sx={{
-                color: 'black',
+                color: 'white',
                 '&:hover': { backgroundColor: '#121212', color: 'white' },
                 textTransform: 'none',
                 fontSize: { xs: '13px', lg: '15px' }  // Responsive font size
@@ -150,39 +176,58 @@ const LandingPage = () => {
       </AppBar>
 
 
-{/* ///////////////////////////////////////////////// Hero Section //////////////////////////////////////////////////////////////*/}
-
+      {/* Hero Section */}
       <Box sx={{
         display: 'flex',
-        backgroundImage: `url('https://cdn.document360.io/eeea9cac-8c8e-412a-abaf-aa61ad022a38/Images/Documentation/Slide-1.png')`,  // Background Image 
-        backgroundSize: 'cover', // Ensure the image covers the entire box
-        backgroundPosition: 'center', // Center the image
+        // backgroundImage: `url('https://cdn.document360.io/eeea9cac-8c8e-412a-abaf-aa61ad022a38/Images/Documentation/Slide-1.png')`,  // Background Image 
+        background: 'radial-gradient(circle at top left, rgba(255,0,150,0.5), transparent), radial-gradient(circle at bottom right, rgba(0,205,255,0.5), transparent)',
+        // backgroundSize: 'cover', // Ensure the image covers the entire box
+        // backgroundPosition: 'center', // Center the image
         width: '100%%', // Ensure the box takes full width
         height: '90vh',
         justifyContent: 'center',
         alignItems: 'center',
       }}>
 
+
+        <BackgroundLayer /> {/* Background overlay */}
+        <GradientLayer /> {/* Gradient overlay */}
+
         {/* /////////// Hero Section description //////////*/}
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={12} lg={6}>
+        <Grid container spacing={2} zIndex={3}
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+
+          }}
+        >
+          <Grid item xs={12} sm={12} lg={6}          >
             <Box sx={{
-              mt: { xs: '70px' },
+              // mt: { xs: '40px' },
               ml: '10px',
               flex: 1,
               color: 'black',
               display: 'flex',
-              minHeight: { xs: '30vh', lg: '70vh' }  //Responsive height
+              minHeight: { xs: '30vh', lg: '70vh' }, //Responsive height
             }}>
-              <Container maxWidth="md">
+              <Container maxWidth="md"
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                }}
+              >
                 <Typography
-                  variant="h3"
+                  variant="h4"
                   sx={{
                     color: 'white',
                     fontWeight: 'bold',
                     fontSize: { xs: '30px', lg: '49px' }  // Responsive font size
                   }} >
-                  Effortless Learning with AI-Powered Flashcards
+                  AI-Powered Flashcards
                 </Typography>
                 <Typography
                   variant="h6"
@@ -207,32 +252,16 @@ const LandingPage = () => {
                   Get Started         {/* ///////////////////// Link Here signUp page here ////////////*/}
                 </Button>
               </Container>
+
             </Box>
 
             {/* /////////// Hero Section Image //////////*/}
           </Grid>
-          <Grid item xs={12} sm={12} lg={6}>
-            <Box sx={{
-              mt: { xs: '5 0px', lg: '80px' },
-              width: { xs: '100%', lg: '560px' }
-            }}>
-              <Image
-                src="/bg.jpg" // Path to your image in the public directory
-                alt="Example Image"
-                layout="responsive"  //it makes img responsive 
-                width={460} // Default width to avoid the error
-                height={300} // Specify the height of the image
-              />
-            </Box>
-
-          </Grid>
-
         </Grid>
-
       </Box>
 
 
-{/*/////////////////////////////////////////////  Features section  /////////////////////////////////////////////////////////////////////////////////////*/}
+      {/*///////////////  Features section  /////////////////*/}
 
       <Box sx={{
         display: 'flex',
@@ -405,7 +434,7 @@ const LandingPage = () => {
       </Box>
 
 
-{/*//////////////////////////////////// Pricing Section ////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+      {/*//////////////////////////////////// Pricing Section ////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
       <Box sx={{
         width: '100%',
@@ -449,15 +478,15 @@ const LandingPage = () => {
         {/* //////////////////// Pricing Cards /////////////*/}
 
         <Box sx={{
-           mx: 'auto',
-           maxWidth: '1200px',
-            }}> {/* Centralize content with max-width */}
+          mx: 'auto',
+          maxWidth: '1200px',
+        }}> {/* Centralize content with max-width */}
           <Grid container spacing={1} > {/* Adjust spacing between cards */}
 
             {/* ////////////////////Card 1 /////////////*/}
             <Grid item xs={12} md={6}>
               <Box sx={{
-                ml:{lg:'120px'},
+                ml: { lg: '120px' },
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -468,7 +497,7 @@ const LandingPage = () => {
                 padding: { xs: '20px', md: '30px' }, // Responsive padding
                 boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
                 textAlign: 'center',
-                width:{xs:'100%',lg:'70%'}
+                width: { xs: '100%', lg: '70%' }
               }}>
                 {/* //////Card Content/////// */}
                 <Box sx={{
@@ -541,6 +570,8 @@ const LandingPage = () => {
                     </Typography>
                   </Box>
 
+
+
                   <Box sx={{
                     display: 'flex',
                     alignItems: 'center',
@@ -581,46 +612,80 @@ const LandingPage = () => {
 
             {/* ///////////////////Card 2 //////////*/}
             <Grid item xs={12} md={6}>
-              <Box sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                border: '1px solid #e0e0e0',
-                borderRadius: '8px', // Rounded corners
-                backgroundColor: '#f9f9f9',
-                padding: { xs: '20px', md: '30px' }, // Responsive padding
-                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
-                textAlign: 'center',
-                width:{xs:'100%',lg:'70%'}
-              }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  border: '1px solid #e0e0e0',
+                  borderRadius: '8px', // Rounded corners
+                  backgroundColor: '#f9f9f9',
+                  padding: { xs: '20px', md: '30px' }, // Responsive padding
+                  boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+                  textAlign: 'center',
+                  width: { xs: '100%', lg: '70%' },
+                  position: 'relative',
+                }}>
+
+
 
                 {/*///////// Card Content ///////////////*/}
-                <Box sx={{
-                  backgroundColor: 'hsl(240, 4.8%, 95.9%)',
-                  padding: '20px',
-                  borderRadius: '8px',
-                  width: '100%',
-                  mb: 2
-                }}>
-                  <Typography
-                    variant='h4'
+                <Box
+                  sx={{
+                    position: 'relative',
+                    backgroundColor: 'rgba(100,0,100,0.9)',
+                    padding: '20px',
+                    borderRadius: '8px',
+                    width: '100%',
+                    mb: 2,
+                    zIndex: 0,
+                    overflow: 'hidden', // Ensure nothing overflows outside the box
+                  }}
+                >
+                  {/* Gradient Background Layer */}
+                  <Box
                     sx={{
-                      color: '#121212',
-                      fontWeight: 'bold',
-                      fontSize: { xs: '1.5rem', md: '2rem' }
-                    }}>
-                    Pro
-                  </Typography>
-                  <Typography
-                    variant="h6"
+                      position: 'absolute', // Make sure this is absolutely positioned within the parent
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      zIndex: 1, // Lower than Typography
+                      background: 'radial-gradient(circle at top left, rgba(255,0,150,0.5), transparent), radial-gradient(circle at bottom right, rgba(0,205,255,0.5), transparent)',
+                      opacity: 0.6,
+                      filter: 'blur(50px)',
+                    }}
+                  />
+
+                  {/* Content Layer */}
+                  <Box
                     sx={{
-                      color: '#121212',
-                      mt: 2,
-                      fontSize: { xs: '1rem', md: '1.25rem' }
-                    }}>
-                    Unlock advanced features.
-                  </Typography>
+                      position: 'relative', // Make sure this stays above the gradient background
+                      zIndex: 2, // Higher than the background
+                    }}
+                  >
+                    <Typography
+                      variant='h4'
+                      sx={{
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: { xs: '1.5rem', md: '2rem' },
+                      }}
+                    >
+                      Pro
+                    </Typography>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        color: 'white',
+                        mt: 2,
+                        fontSize: { xs: '1rem', md: '1.25rem' },
+                      }}
+                    >
+                      Unlock advanced features.
+                    </Typography>
+                  </Box>
                 </Box>
 
                 {/* ///////Features List //////////*/}
@@ -630,7 +695,7 @@ const LandingPage = () => {
                   alignItems: 'center',
                   mt: 2,
                   gap: 2,
-                  width: '100%'
+                  width: '100%',
                 }}>
                   <Box sx={{
                     display: 'flex',
@@ -708,11 +773,11 @@ const LandingPage = () => {
 
 
 
-{/** ////////////////////////////////////////////////////////Foooter Section //////////////////////////////////////////////////////////////// */}
+      {/** //////////Foooter Section ////////////// */}
       <Box
         component="footer"
         sx={{
-          mt: '100px',
+          mt: '20px',
           display: 'flex',
           flexDirection: 'row', // Stack vertically on small screens, horizontally on larger screens
           gap: 2, // Spacing between items
@@ -754,7 +819,7 @@ const LandingPage = () => {
           </Link>
         </Box>
       </Box>
-    </Box>
+    </Box >
   );
 }
 
