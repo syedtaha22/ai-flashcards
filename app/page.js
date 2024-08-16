@@ -489,20 +489,34 @@ const LandingPage = () => {
             </Typography>
           </Box>
 
-          {/* Pricing Cards */}
-          <Grid
-            container
-            spacing={3}
-            justifyContent="center"
-            sx={{ px: { xs: 2, sm: 4, md: 6 } }} // Add padding to the grid container to prevent cards from touching the sides
-          >
-            {/* Card 1 */}
-            <Grid item xs={12} md={6} lg={4}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
+        {/* //////////////////// Pricing Cards /////////////*/}
+
+        <Box sx={{
+          mx: 'auto',
+          maxWidth: '1200px',
+        }}> {/* Centralize content with max-width */}
+          <Grid container spacing={1} > {/* Adjust spacing between cards */}
+
+            {/* ////////////////////Card 1 /////////////*/}
+            <Grid item xs={12} md={6}>
+              <Box sx={{
+                ml: { lg: '120px' },
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                border: '1px solid #e0e0e0',
+                borderRadius: '8px', // Rounded corners
+                backgroundColor: '#f9f9f9',
+                padding: { xs: '20px', md: '30px' }, // Responsive padding
+                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+                textAlign: 'center',
+                width: { xs: '100%', lg: '70%' }
+              }}>
+                {/* //////Card Content/////// */}
+                <Box sx={{
+                  backgroundColor: 'hsl(240, 4.8%, 95.9%)',
+                  padding: '20px',
                   borderRadius: '8px',
                   backgroundColor: 'rgba(255, 255, 255, 0.1)',
                   padding: { xs: '16px', md: '24px' }, // Reduce padding inside the cards
@@ -511,14 +525,28 @@ const LandingPage = () => {
                   textAlign: 'center',
                   boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
                   width: '100%',
-                }}
-              >
-                <Typography variant="h4" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
-                  Free
-                </Typography>
-                <Typography variant="h6" sx={{ color: '#ffffff', mt: 1.5 }}>
-                  Get started with our free plan.
-                </Typography>
+                  mb: 2
+                }}>
+                  <Typography
+                    variant='h4'
+                    sx={{
+                      color: '#121212',
+                      fontWeight: 'bold',
+                      fontSize: { xs: '1.5rem', md: '2rem' }
+                    }}>
+                    Free
+                  </Typography>
+
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: '#121212',
+                      mt: 2,
+                      fontSize: { xs: '1rem', md: '1.25rem' }
+                    }}>
+                    Get started with our free plan.
+                  </Typography>
+                </Box>
 
                 {/* Features */}
                 <Box sx={{ mt: 2, width: '100%', textAlign: 'left' }}>
@@ -619,7 +647,6 @@ const LandingPage = () => {
           </Grid>
         </Box>
       </Box>
-
 
 
 
