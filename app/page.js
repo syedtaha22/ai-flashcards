@@ -71,17 +71,17 @@ const FlashIcon = (props) => {
   )
 }
 
-const GradientLayer = styled('div')({
+const GradientLayer = styled('div')(({ color1 = 'rgba(255,0,150,0.5)', color2 = 'rgba(0,205,255,0.5)' }) => ({
   position: 'absolute',
   width: '100%', // Ensure the box takes full width
   height: '100%',
   top: 0,
   left: 0,
   zIndex: 1,
-  background: 'radial-gradient(circle at top left, rgba(255,0,150,0.5), transparent), radial-gradient(circle at bottom right, rgba(0,205,255,0.5), transparent)',
+  background: `radial-gradient(circle at top left, ${color1}, transparent), radial-gradient(circle at bottom right, ${color2}, transparent)`,
   opacity: 0.6,
   filter: 'blur(50px)',
-});
+}));
 
 const BackgroundLayer = styled('div')({
   position: 'absolute',
@@ -180,7 +180,7 @@ const LandingPage = () => {
       <Box sx={{
         display: 'flex',
         // backgroundImage: `url('https://cdn.document360.io/eeea9cac-8c8e-412a-abaf-aa61ad022a38/Images/Documentation/Slide-1.png')`,  // Background Image 
-        background: 'radial-gradient(circle at top left, rgba(255,0,150,0.5), transparent), radial-gradient(circle at bottom right, rgba(0,205,255,0.5), transparent)',
+        // background: 'radial-gradient(circle at top left, rgba(255,0,150,0.5), transparent), radial-gradient(circle at bottom right, rgba(0,205,255,0.5), transparent)',
         // backgroundSize: 'cover', // Ensure the image covers the entire box
         // backgroundPosition: 'center', // Center the image
         width: '100%%', // Ensure the box takes full width
@@ -262,540 +262,388 @@ const LandingPage = () => {
 
 
       {/*///////////////  Features section  /////////////////*/}
-
-      <Box sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        textAlign: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'hsl(240, 4.8%, 95.9%)',
-        pt: '1px',
-        pb: '70px'
-      }}>
-        <Container maxWidth="lg">
-
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            textAlign: 'center'
-          }}>
-            <Typography
-              variant='h4'
-              sx={{
-                color: '#121212',
-                fontWeight: 'bold',
-                mt: '100px'
-              }}
-            >
-              Powerful Features
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                color: '#121212',
-                mt: { xs: '30px', lg: '10px' },  // Responsive margin
-                fontSize: { xs: '20px', lg: '19px' }  // Responsive font size
-              }}
-            >
-              Our AI-powered flashcard generator offers a range of features <br />
-              to help you study more effectively.
-            </Typography>
-          </Box>
-
-          <Grid container spacing={4}>
-
-            {/* /////////////////////////Feature 1 //////////// */}
-            <Grid item xm={12} sm={6} md={4} lg={4}>
-              <Box sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                mt: '60px',
-                justifyContent: 'center',
-                alignItems: 'center',
-                border: 'none',
-                width: '100%', // Take full width of the grid item
-                height: { xs: '33vh', md: '25vh', lg: '30vh' },
-                color: 'black',
-              }}>
-                <BoltIcon sx={{
-                  color: '#121212',
-                  fontWeight: 'bold',
-                  fontSize: { xs: '30px', md: '30px', lg: '30px' }  // Responsive icon size
-                }} />
-                <Typography
-                  variant='h6'
-                  sx={{
-                    mt: '15px',
-                    fontWeight: 'bold',
-                    fontSize: { xs: '25px', md: '20px', lg: '20px' },  // Responsive font size
-                    mb: { xs: '10px', md: '15px', lg: '20px' }  // Responsive margin-bottom
-                  }}
-                >
-                  Instant Flashcard Generation
-                </Typography>
-
-                <Typography
-                  variant='body1'
-                  sx={{
-                    fontSize: { xs: '17px', md: '10px', lg: '15px' },  // Responsive font size
-                  }}
-                >
-                  Our AI algorithm generates high-quality flashcards in seconds, saving you valuable time.
-                </Typography>
-              </Box>
-            </Grid>
-
-            {/* /////////////////////////Feature 2 ///////////////// */}
-
-            <Grid item xm={12} sm={6} md={4} lg={4}>
-              <Box sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                mt: '60px',
-                justifyContent: 'center',
-                alignItems: 'center',
-                border: 'none',
-                width: '100%', // Take full width of the grid item
-                height: { xs: '33vh', md: '25vh', lg: '30vh' },  //responsivenesss
-                color: 'black',
-              }}>
-                <SettingsOutlinedIcon sx={{
-                  color: '#121212',
-                  fontWeight: 'bold',
-                  fontSize: { xs: '30px', md: '30px', lg: '30px' }  // Responsive icon size
-                }} />
-                <Typography
-                  variant='h6'
-                  sx={{
-                    mt: '15px',
-                    fontWeight: 'bold',
-                    fontSize: { xs: '25px', md: '20px', lg: '20px' },  // Responsive font size
-                    mb: { xs: '10px', md: '15px', lg: '20px' }  // Responsive margin-bottom
-                  }}
-                >
-                  Customizable Decks
-                </Typography>
-
-                <Typography
-                  variant='body1'
-                  sx={{
-                    fontSize: { xs: '17px', md: '10px', lg: '15px' },  // Responsive font size
-                  }}
-                >
-                  Personalize your flashcard decks with custom tags, categories, and difficulty levels.
-                </Typography>
-              </Box>
-            </Grid>
-
-            {/* /////////////////////////Feature 3  //////////// */}
-            <Grid item xm={12} sm={6} md={4} lg={4}>
-              <Box sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                mt: '60px',
-                justifyContent: 'center',
-                alignItems: 'center',
-                border: 'none',
-                width: '100%', // Take full width of the grid item
-                height: { xs: '33vh', md: '25vh', lg: '30vh' },
-                color: 'black',
-              }}>
-                <SparkleIcon sx={{
-                  color: '#121212',
-                  fontWeight: 'bold',
-                  fontSize: { xs: '30px', md: '30px', lg: '30px' }  // Responsive icon size
-                }} />
-                <Typography
-                  variant='h6'
-                  sx={{
-                    mt: '15px',
-                    fontWeight: 'bold',
-                    fontSize: { xs: '25px', md: '20px', lg: '20px' },  // Responsive font size
-                    mb: { xs: '10px', md: '15px', lg: '20px' }  // Responsive margin-bottom
-                  }}
-                >
-                  Spaced Repetition
-                </Typography>
-
-                <Typography
-                  variant='body1'
-                  sx={{
-                    fontSize: { xs: '17px', md: '10px', lg: '15px' },  // Responsive font size
-                  }}
-                >
-                  Our intelligent algorithm ensures you review content at the optimal intervals
-                  for long-term retention.
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
-
-        </Container>
-      </Box>
-
-
-      {/*//////////////////////////////////// Pricing Section ////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-
-      <Box sx={{
-        width: '100%',
-        py: { xs: 4, md: 8 } ///* Responsive padding */}
-      }}>
-
-        {/*////////// Pricing Header /////// */}
+      <Box
+        sx={{
+          background: 'black',
+        }}
+      >
         <Box sx={{
           display: 'flex',
           flexDirection: 'column',
           textAlign: 'center',
           justifyContent: 'center',
-          alignItems: 'center',
-          mb: { xs: 6, md: 10 }, // Adjust bottom margin for spacing
-          px: { xs: 2, sm: 4, md: 6 } // Padding for text container on mobile
+          pb: '40px',
+          position: 'relative',
+          background: `radial-gradient(circle at bottom left, #dab4ff, transparent), radial-gradient(circle at top right, #1faf98, transparent)`,
+          background: 'radial-gradient(circle at bottom left, rgba(255,0,150,0.5), transparent), radial-gradient(circle at top right, rgba(0,205,255,0.5), transparent)',
+
+          backdropFilter: 'blur(100px)',
         }}>
-          <Typography
-            variant='h4'
+
+
+          <Container maxWidth="lg"
             sx={{
-              color: '#121212',
-              fontWeight: 'bold',
-              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' }, // Responsive font size
-              mt: '20px',
+              color: 'rgba(255,255,255,0.6)',
             }}
           >
-            Pricing
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{
-              color: '#121212',
-              mt: { xs: '10px', lg: '15px' },  // Responsive margin
-              fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },  // Responsive font size
-              maxWidth: { xs: '100%', sm: '80%', md: '60%' } // Control width on different screens
-            }}
-          >
-            Choose the plan that best fits your needs and start studying more effectively today.
-          </Typography>
-        </Box>
 
-        {/* //////////////////// Pricing Cards /////////////*/}
+            <Box sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              textAlign: 'center',
+            }}>
+              <Typography
+                variant='h4'
+                sx={{
+                  // color: '#121212',
+                  fontWeight: 'bold',
+                  mt: '100px'
+                }}
+              >
+                Powerful Features
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  // color: '#121212',
+                  mb: '5px',
+                  mt: { xs: '30px', lg: '10px' },  // Responsive margin
+                  fontSize: { xs: '20px', lg: '19px' }  // Responsive font size
+                }}
+              >
+                Our AI-powered flashcard generator offers a range of features <br />
+                to help you study more effectively.
+              </Typography>
+            </Box>
 
-        <Box sx={{
-          mx: 'auto',
-          maxWidth: '1200px',
-        }}> {/* Centralize content with max-width */}
-          <Grid container spacing={1} > {/* Adjust spacing between cards */}
-
-            {/* ////////////////////Card 1 /////////////*/}
-            <Grid item xs={12} md={6}>
-              <Box sx={{
-                ml: { lg: '120px' },
+            <Grid container spacing={4}
+              sx={{
                 display: 'flex',
-                flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
-                border: '1px solid #e0e0e0',
-                borderRadius: '8px', // Rounded corners
-                backgroundColor: '#f9f9f9',
-                padding: { xs: '20px', md: '30px' }, // Responsive padding
-                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
-                textAlign: 'center',
-                width: { xs: '100%', lg: '70%' }
-              }}>
-                {/* //////Card Content/////// */}
+              }}
+            >
+              {/* /////////////////////////Feature 1 //////////// */}
+              <Grid item xm={12} sm={6} md={4} lg={4}>
                 <Box sx={{
-                  backgroundColor: 'hsl(240, 4.8%, 95.9%)',
-                  padding: '20px',
-                  borderRadius: '8px',
-                  width: '100%',
-                  mb: 2
-                }}>
-                  <Typography
-                    variant='h4'
-                    sx={{
-                      color: '#121212',
-                      fontWeight: 'bold',
-                      fontSize: { xs: '1.5rem', md: '2rem' }
-                    }}>
-                    Free
-                  </Typography>
-
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      color: '#121212',
-                      mt: 2,
-                      fontSize: { xs: '1rem', md: '1.25rem' }
-                    }}>
-                    Get started with our free plan.
-                  </Typography>
-                </Box>
-
-                {/*///////// Features List /////////// */}
-                <Box sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  mt: 2,
-                  gap: 2,
-                  width: '100%'
-                }}>
-
-                  <Box sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1,
-                    width: '100%'
-                  }}>
-                    <DoneIcon sx={{ color: '#121212' }} />
-                    <Typography sx={{
-                      flexGrow: 1,
-                      textAlign: 'left',
-                      fontSize: { xs: '0.875rem', md: '1rem' }
-                    }}>
-                      Up to 50 flashcards
-                    </Typography>
-                  </Box>
-
-                  <Box sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1,
-                    width: '100%'
-                  }}>
-                    <DoneIcon sx={{ color: '#121212' }} />
-                    <Typography sx={{
-                      flexGrow: 1,
-                      textAlign: 'left',
-                      fontSize: { xs: '0.875rem', md: '1rem' }
-                    }}>
-                      Basic customization
-                    </Typography>
-                  </Box>
-
-
-
-                  <Box sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1,
-                    width: '100%'
-                  }}>
-                    <DoneIcon sx={{ color: '#121212' }} />
-                    <Typography sx={{
-                      flexGrow: 1,
-                      textAlign: 'left',
-                      fontSize: { xs: '0.875rem', md: '1rem' }
-                    }}>
-                      Spaced repetition
-                    </Typography>
-                  </Box>
-                </Box>
-
-                {/* ////// Button //////*/}
-                <Button sx={{
-                  backgroundColor: 'black',
-                  mt: 3,
-                  border: '1px solid white',
-                  borderRadius: '8px',
-                  color: 'white',
-                  width: '100%',
-                  padding: { xs: '10px 15px', md: '10px 20px' }, // Responsive padding
-                  fontSize: { xs: '0.875rem', md: '1rem' }, // Responsive font size
-                  '&:hover': {
-                    backgroundColor: 'black',
-                    color: 'white',
-                    borderColor: 'white'
-                  }
-                }}>
-                  Get Started for Free   {/*////////////////// Link sign up Page Here  */}
-                </Button>
-              </Box>
-            </Grid>
-
-            {/* ///////////////////Card 2 //////////*/}
-            <Grid item xs={12} md={6}>
-              <Box
-                sx={{
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  border: '1px solid #e0e0e0',
-                  borderRadius: '8px', // Rounded corners
-                  backgroundColor: '#f9f9f9',
-                  padding: { xs: '20px', md: '30px' }, // Responsive padding
-                  boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
-                  textAlign: 'center',
-                  width: { xs: '100%', lg: '70%' },
-                  position: 'relative',
+                  border: 'none',
+                  width: '100%', // Take full width of the grid item
+                  height: { xs: '33vh', md: '25vh', lg: '30vh' },
+                  // color: 'black',
                 }}>
-
-
-
-                {/*///////// Card Content ///////////////*/}
-                <Box
-                  sx={{
-                    position: 'relative',
-                    backgroundColor: 'rgba(100,0,100,0.9)',
-                    padding: '20px',
-                    borderRadius: '8px',
-                    width: '100%',
-                    mb: 2,
-                    zIndex: 0,
-                    overflow: 'hidden', // Ensure nothing overflows outside the box
-                  }}
-                >
-                  {/* Gradient Background Layer */}
-                  <Box
+                  <BoltIcon sx={{
+                    // color: '#121212',
+                    fontWeight: 'bold',
+                    fontSize: { xs: '30px', md: '30px', lg: '30px' }  // Responsive icon size
+                  }} />
+                  <Typography
+                    variant='h6'
                     sx={{
-                      position: 'absolute', // Make sure this is absolutely positioned within the parent
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      zIndex: 1, // Lower than Typography
-                      background: 'radial-gradient(circle at top left, rgba(255,0,150,0.5), transparent), radial-gradient(circle at bottom right, rgba(0,205,255,0.5), transparent)',
-                      opacity: 0.6,
-                      filter: 'blur(50px)',
-                    }}
-                  />
-
-                  {/* Content Layer */}
-                  <Box
-                    sx={{
-                      position: 'relative', // Make sure this stays above the gradient background
-                      zIndex: 2, // Higher than the background
+                      mt: '15px',
+                      fontWeight: 'bold',
+                      fontSize: { xs: '25px', md: '20px', lg: '20px' },  // Responsive font size
+                      mb: { xs: '10px', md: '15px', lg: '20px' }  // Responsive margin-bottom
                     }}
                   >
-                    <Typography
-                      variant='h4'
-                      sx={{
-                        color: 'white',
-                        fontWeight: 'bold',
-                        fontSize: { xs: '1.5rem', md: '2rem' },
-                      }}
-                    >
-                      Pro
-                    </Typography>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        color: 'white',
-                        mt: 2,
-                        fontSize: { xs: '1rem', md: '1.25rem' },
-                      }}
-                    >
-                      Unlock advanced features.
-                    </Typography>
-                  </Box>
-                </Box>
+                    Instant Flashcard Generation
+                  </Typography>
 
-                {/* ///////Features List //////////*/}
+                  <Typography
+                    variant='body1'
+                    sx={{
+                      fontSize: { xs: '17px', md: '10px', lg: '15px' },  // Responsive font size
+                    }}
+                  >
+                    Our AI algorithm generates high-quality flashcards in seconds, saving you valuable time.
+                  </Typography>
+                </Box>
+              </Grid>
+
+              {/* /////////////////////////Feature 2 ///////////////// */}
+
+              <Grid item xm={12} sm={6} md={4} lg={4}>
                 <Box sx={{
                   display: 'flex',
                   flexDirection: 'column',
+                  justifyContent: 'center',
                   alignItems: 'center',
-                  mt: 2,
-                  gap: 2,
-                  width: '100%',
+                  border: 'none',
+                  width: '100%', // Take full width of the grid item
+                  height: { xs: '33vh', md: '25vh', lg: '30vh' },  //responsivenesss
+                  // color: 'blsack',
                 }}>
-                  <Box sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1,
-                    width: '100%'
-                  }}>
-                    <DoneIcon sx={{ color: '#121212' }} />
-                    <Typography sx={{
-                      flexGrow: 1,
-                      textAlign: 'left',
-                      fontSize: { xs: '0.875rem', md: '1rem' }
-                    }}>
-                      Unlimited flashcards
-                    </Typography>
-                  </Box>
+                  <SettingsOutlinedIcon sx={{
+                    // color: '#121212',
+                    fontWeight: 'bold',
+                    fontSize: { xs: '30px', md: '30px', lg: '30px' }  // Responsive icon size
+                  }} />
+                  <Typography
+                    variant='h6'
+                    sx={{
+                      mt: '15px',
+                      fontWeight: 'bold',
+                      fontSize: { xs: '25px', md: '20px', lg: '20px' },  // Responsive font size
+                      mb: { xs: '10px', md: '15px', lg: '20px' }  // Responsive margin-bottom
+                    }}
+                  >
+                    Customizable Decks
+                  </Typography>
 
-                  <Box sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1,
-                    width: '100%'
-                  }}>
-                    <DoneIcon sx={{ color: '#121212' }} />
-                    <Typography sx={{
-                      flexGrow: 1,
-                      textAlign: 'left',
-                      fontSize: { xs: '0.875rem', md: '1rem' }
-                    }}>
-                      Advanced customization
-                    </Typography>
+                  <Typography
+                    variant='body1'
+                    sx={{
+                      fontSize: { xs: '17px', md: '10px', lg: '15px' },  // Responsive font size
+                    }}
+                  >
+                    Personalize your flashcard decks with custom tags, categories, and difficulty levels.
+                  </Typography>
+                </Box>
+              </Grid>
+
+              {/* /////////////////////////Feature 3  //////////// */}
+              <Grid item xm={12} sm={6} md={4} lg={4}>
+                <Box sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  border: 'none',
+                  width: '100%', // Take full width of the grid item
+                  height: { xs: '33vh', md: '25vh', lg: '30vh' },
+                  // color: 'black',
+                }}>
+                  <SparkleIcon sx={{
+                    // color: '#121212',
+                    fontWeight: 'bold',
+                    fontSize: { xs: '30px', md: '30px', lg: '30px' }  // Responsive icon size
+                  }} />
+                  <Typography
+                    variant='h6'
+                    sx={{
+                      mt: '15px',
+                      fontWeight: 'bold',
+                      fontSize: { xs: '25px', md: '20px', lg: '20px' },  // Responsive font size
+                      mb: { xs: '10px', md: '15px', lg: '20px' }  // Responsive margin-bottom
+                    }}
+                  >
+                    Spaced Repetition
+                  </Typography>
+
+                  <Typography
+                    variant='body1'
+                    sx={{
+                      fontSize: { xs: '17px', md: '10px', lg: '15px' },  // Responsive font size
+                    }}
+                  >
+                    Our intelligent algorithm ensures you review content at the optimal intervals
+                    for long-term retention.
+                  </Typography>
+                </Box>
+              </Grid>
+            </Grid>
+
+          </Container>
+        </Box >
+      </Box>
+
+
+      {/*//////////////////////////////////// Pricing Section ////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+
+      <Box
+        sx={{
+          background: 'black',
+        }}
+      >
+        <Box
+          sx={{
+            background: 'radial-gradient(circle at top left, rgba(255,0,150,0.5), transparent), radial-gradient(circle at bottom right, rgba(0,205,255,0.5), transparent)',
+            py: { xs: 4, md: 6 }, // Reduce the padding of the section
+          }}
+        >
+          {/* Pricing Header */}
+          <Box
+            sx={{
+              textAlign: 'center',
+              color: 'rgba(255,255,255,0.8)',
+              mb: { xs: 4, md: 6 }, // Reduce bottom margin of the header
+              px: { xs: 2, sm: 4, md: 6 },
+            }}
+          >
+            <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+              Pricing
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                mt: { xs: '8px', lg: '12px' }, // Adjust the margin-top for better spacing
+                fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
+                maxWidth: { xs: '100%', sm: '80%', md: '60%' },
+                mx: 'auto',
+              }}
+            >
+              Choose the plan that best fits your needs and start studying more effectively today.
+            </Typography>
+          </Box>
+
+          {/* Pricing Cards */}
+          <Grid container spacing={3} justifyContent="center">
+            {/* Card 1 */}
+            <Grid item xs={12} md={6} lg={4}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  borderRadius: '8px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  padding: { xs: '16px', md: '24px' }, // Reduce padding inside the cards
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  textAlign: 'center',
+                  boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+                  width: '100%',
+
+                }}
+              >
+                <Typography variant="h4" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
+                  Free
+                </Typography>
+                <Typography variant="h6" sx={{ color: '#ffffff', mt: 1.5 }}>
+                  Get started with our free plan.
+                </Typography>
+
+                {/* Features */}
+                <Box sx={{ mt: 2, width: '100%', textAlign: 'left' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+                    <DoneIcon sx={{ color: '#ffffff' }} />
+                    <Typography sx={{ color: '#ffffff' }}>Up to 50 flashcards</Typography>
                   </Box>
-                  <Box sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1,
-                    width: '100%'
-                  }}>
-                    <DoneIcon sx={{ color: '#121212' }} />
-                    <Typography sx={{
-                      flexGrow: 1,
-                      textAlign: 'left',
-                      fontSize: { xs: '0.875rem', md: '1rem' }
-                    }}>
-                      Priority support And Much More
-                    </Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+                    <DoneIcon sx={{ color: '#ffffff' }} />
+                    <Typography sx={{ color: '#ffffff' }}>Basic customization</Typography>
+                  </Box>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <DoneIcon sx={{ color: '#ffffff' }} />
+                    <Typography sx={{ color: '#ffffff' }}>Spaced repetition</Typography>
                   </Box>
                 </Box>
 
-                {/* //////////Button///////// */}
-                <Button sx={{
-                  backgroundColor: 'black',
-                  mt: 3,
-                  border: '1px solid white',
-                  borderRadius: '8px',
-                  color: 'white',
-                  width: '100%',
-                  padding: { xs: '10px 15px', md: '10px 20px' }, // Responsive padding
-                  fontSize: { xs: '0.875rem', md: '1rem' }, // Responsive font size
-                  '&:hover': {
-                    backgroundColor: 'black',
+                {/* Button */}
+                <Button
+                  sx={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    mt: 2.5,
+                    borderRadius: '8px',
                     color: 'white',
-                    borderColor: 'white'
-                  }
-                }}>
-                  Upgrade to Pro                  {/*/// Link Payment Gateway Here /*/}
+                    width: '100%',
+                    padding: '8px 16px', // Adjust padding of the button
+                    fontSize: '1rem',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                    },
+                  }}
+                >
+                  Get Started for Free
                 </Button>
               </Box>
             </Grid>
 
+            {/* Card 2 */}
+            <Grid item xs={12} md={6} lg={4}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  borderRadius: '8px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  padding: { xs: '16px', md: '24px' }, // Reduce padding inside the cards
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  textAlign: 'center',
+                  boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+                  position: 'relative',
+                  width: '100%',
+                }}
+              >
+                <Typography variant="h4" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
+                  Pro
+                </Typography>
+                <Typography variant="h6" sx={{ color: '#ffffff', mt: 1.5 }}>
+                  Unlock advanced features.
+                </Typography>
+
+                {/* Features */}
+                <Box sx={{ mt: 2, width: '100%', textAlign: 'left' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+                    <DoneIcon sx={{ color: '#ffffff' }} />
+                    <Typography sx={{ color: '#ffffff' }}>Unlimited flashcards</Typography>
+                  </Box>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+                    <DoneIcon sx={{ color: '#ffffff' }} />
+                    <Typography sx={{ color: '#ffffff' }}>Advanced customization</Typography>
+                  </Box>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <DoneIcon sx={{ color: '#ffffff' }} />
+                    <Typography sx={{ color: '#ffffff' }}>Priority support and much more</Typography>
+                  </Box>
+                </Box>
+
+                {/* Button */}
+                <Button
+                  sx={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    mt: 2.5,
+                    borderRadius: '8px',
+                    color: 'white',
+                    width: '100%',
+                    padding: '8px 16px', // Adjust padding of the button
+                    fontSize: '1rem',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                    },
+                  }}
+                >
+                  Upgrade to Pro
+                </Button>
+              </Box>
+            </Grid>
           </Grid>
         </Box>
       </Box>
 
 
 
-
       {/** //////////Foooter Section ////////////// */}
-      <Box
+      < Box
         component="footer"
         sx={{
-          mt: '20px',
+
+          mt: '0px',
           display: 'flex',
           flexDirection: 'row', // Stack vertically on small screens, horizontally on larger screens
           gap: 2, // Spacing between items
           py: 3, // Padding on the top and bottom
           px: { xs: 4, md: 6 }, // Padding on the left and right, responsive
           width: '100%', // Full width
-          borderTop: '1px solid #e0e0e0', // Top border
           alignItems: 'center', // Center align items vertically
           justifyContent: 'space-between', // Spread items out between left and right
+          background: 'radial-gradient(circle at top left, rgba(255,0,150,0.5), transparent), radial-gradient(circle at bottom right, rgba(0,205,255,0.5), transparent)',
+          backgroundColor: 'rgba(0, 0, 0, 0.2)',
+          backdropFilter: 'blur(10px)',
         }}
       >
         {/*//////////Copyright Section ///////////*/}
-        <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem' }}> {/* Equivalent to text-xs */}
+        < Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem' }}> {/* Equivalent to text-xs */}
           &copy; 2024 FlashAI. All rights reserved.
-        </Typography>
+        </Typography >
 
         {/* ////////////////////Navigation Links /////////////////////*/}
-        <Box
+        < Box
           component="nav"
           sx={{
             display: 'flex',
@@ -804,21 +652,21 @@ const LandingPage = () => {
         >
 
           {/** //////////////Terms of Service  Link//////////// */}
-          <Link href="#" sx={{ fontSize: '0.75rem', color: '#121212', textDecoration: 'none' }}> {/* Hover underline, small text */}
+          < Link href="#" sx={{ fontSize: '0.75rem', color: '#121212', textDecoration: 'none' }}> {/* Hover underline, small text */}
             Terms of Service
-          </Link>
+          </Link >
 
           {/** //////////////Privacy  Link//////////// */}
-          <Link href="#" sx={{ fontSize: '0.75rem', color: '#121212', textDecoration: 'none' }}>
+          < Link href="#" sx={{ fontSize: '0.75rem', color: '#121212', textDecoration: 'none' }}>
             Privacy
-          </Link>
+          </Link >
 
           {/** //////////////Contact Link//////////// */}
-          <Link href="#" sx={{ fontSize: '0.75rem', color: '#121212', textDecoration: 'none' }}>
+          < Link href="#" sx={{ fontSize: '0.75rem', color: '#121212', textDecoration: 'none' }}>
             Contact
-          </Link>
-        </Box>
-      </Box>
+          </Link >
+        </Box >
+      </Box >
     </Box >
   );
 }
