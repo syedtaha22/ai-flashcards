@@ -1,10 +1,12 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, Box, Container, Grid, Accordion, AccordionSummary, AccordionDetails, Link, Card, CardContent, Avatar } from '@mui/material';
 import { Bolt, CommitSharp, Done, Replay } from '@mui/icons-material';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/navigation';
+import { collection, getDocs } from 'firebase/firestore';
+import { firestore } from '@/firebase';
 
 //Flash icon for Header section 
 const FlashIcon = (props) => {
@@ -53,10 +55,40 @@ const BackgroundLayer = styled('div')({
 /* ============================== Landing Page ==============================*/
 const LandingPage = () => {
     const router = useRouter();
+    const [totalUsers, setTotalUsers] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleJoinWaitlist = () => {
         router.push("/waitlist");
     };
+
+
+    useEffect(() => {
+        const fetchUserCount = async () => {
+            try {
+                const waitlists = collection(firestore, 'waitlist-flash-ai');
+                const querySnapshot = await getDocs(waitlists);
+                let userCount = 0;
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    console.log(data);
+                    if (data.contacts) {
+                        userCount += data.contacts.length;
+                    }
+                });
+
+                setTotalUsers(userCount);
+            } catch (error) {
+                console.error('Error fetching review count:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchUserCount();
+    }, []);
+
 
 
     return (
@@ -134,6 +166,15 @@ const LandingPage = () => {
                                     sx={{ mt: '25px', borderColor: 'white', borderRadius: '8px', color: 'inherit', '&:hover': { borderColor: 'rgba(255,255,255,0.5)' } }}>
                                     Join the waitlist
                                 </Button>
+                                <Typography
+                                    fontSize={10}
+                                    sx={{
+                                        marginTop: '15px',
+                                        color: 'rgba(255,255,255,0.6)',
+                                    }}
+                                >
+                                    {isLoading ? 'Calculating...' : `${totalUsers} People Have Joined the Waitlist`}
+                                </Typography>
                             </Container>
                         </Box>
                     </Grid>
