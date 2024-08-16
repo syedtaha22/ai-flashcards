@@ -4,6 +4,7 @@ import { AppBar, Toolbar, Typography, Button, Box, Container, Grid, Accordion, A
 import { Bolt, CommitSharp, Done, Replay } from '@mui/icons-material';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import styled from '@emotion/styled';
+import { useRouter } from 'next/navigation';
 
 //Flash icon for Header section 
 const FlashIcon = (props) => {
@@ -51,6 +52,13 @@ const BackgroundLayer = styled('div')({
 
 /* ============================== Landing Page ==============================*/
 const LandingPage = () => {
+    const router = useRouter();
+
+    const handleJoinWaitlist = () => {
+        router.push("/waitlist");
+    };
+
+
     return (
         <Box color='white'>
             {/* ============================== Header Section ============================== */}
@@ -58,7 +66,7 @@ const LandingPage = () => {
                 <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
 
                     {/* ============================ Logo + FlashAI Text ============================ */}
-                    <Link href="page.js" sx={{ textDecoration: 'none' }}>
+                    <Link href="/" sx={{ textDecoration: 'none' }}>
                         <Box sx={{ color: 'white', ml: '1px', display: 'flex', gap: 1 }}>
                             <FlashIcon /> {/* FlashAI Icon */}
                             <Typography variant="h6" sx={{ fontWeight: 'bold', fontSize: { xs: '18px', lg: '20px' } }}>
@@ -70,7 +78,7 @@ const LandingPage = () => {
                     <Box sx={{ display: 'flex', gap: { xs: 0.1, lg: 2 } }}>
 
                         {/* =========================== Join the Waitlist =========================== */}
-                        <Button href=""  // --------------------> Link Waitlist here
+                        <Button onClick={handleJoinWaitlist}  // --------------------> Link Waitlist here
                             color='inherit'
                             variant='outlined'
 
@@ -122,9 +130,9 @@ const LandingPage = () => {
                                     Revolutionize your study routine with our AI-generated flashcards.
                                     Boost your retention and ace your exams.
                                 </Typography>
-                                <Button variant="outlined"
+                                <Button variant="outlined" onClick={handleJoinWaitlist}
                                     sx={{ mt: '25px', borderColor: 'white', borderRadius: '8px', color: 'inherit', '&:hover': { borderColor: 'rgba(255,255,255,0.5)' } }}>
-                                    Join the waitlist      {/* --------------> Link Here signUp page here */}
+                                    Join the waitlist
                                 </Button>
                             </Container>
                         </Box>
