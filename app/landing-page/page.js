@@ -67,25 +67,15 @@ const LandingPage = () => {
                         </Box>
                     </Link>
                     {/* ============================================================================= */}
-
                     <Box sx={{ display: 'flex', gap: { xs: 0.1, lg: 2 } }}>
-                        {/* ============================== SignIn Button ============================== */}
-                        <Button href=""  // --------------------> Link Sign In here
-                            sx={{
-                                color: 'inherit',
-                                '&:hover': { backgroundColor: '#121212', color: 'white' },
-                                textTransform: 'none',
-                                fontSize: { xs: '13px', lg: '15px' }  // Responsive font size
-                            }}
-                        >
-                            Sign In
-                        </Button>
-                        {/* =========================================================================== */}
-                        {/* ============================== SignOut Button ============================= */}
-                        <Button href=""  // --------------------> Link Sign Out here
+
+                        {/* =========================== Join the Waitlist =========================== */}
+                        <Button href=""  // --------------------> Link Waitlist here
                             color='inherit'
                             variant='outlined'
+
                             sx={{
+                                borderRadius: '8px',
                                 borderColor: 'rgba(255, 255, 255, 0.5)',
                                 mr: { xs: '-9px', lg: '20px' },  // Responsive margin
                                 textTransform: 'none',
@@ -94,9 +84,10 @@ const LandingPage = () => {
                                 '&:hover': { backgroundColor: '#fff', color: 'black' },
                             }}
                         >
-                            Sign Up
+                            Join the Waitlist
                         </Button>
-                        {/* ============================== SignOut Button ============================= */}
+                        {/* =========================================================================== */}
+
                     </Box>
                 </Toolbar>
             </AppBar>
@@ -133,7 +124,7 @@ const LandingPage = () => {
                                 </Typography>
                                 <Button variant="outlined"
                                     sx={{ mt: '25px', borderColor: 'white', borderRadius: '8px', color: 'inherit', '&:hover': { borderColor: 'rgba(255,255,255,0.5)' } }}>
-                                    Get Started         {/* --------------> Link Here signUp page here */}
+                                    Join the waitlist      {/* --------------> Link Here signUp page here */}
                                 </Button>
                             </Container>
                         </Box>
@@ -332,22 +323,6 @@ const LandingPage = () => {
                                 </li>
                             </Box>
                             {/* ================== */}
-                            <Button
-                                sx={{
-                                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                                    mt: 2.5,
-                                    borderRadius: '8px',
-                                    color: 'white',
-                                    width: '100%',
-                                    padding: '8px 16px', // Adjust padding of the button
-                                    fontSize: '1rem',
-                                    '&:hover': {
-                                        backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                                    },
-                                }}
-                            >
-                                Get Started for Free
-                            </Button>
                         </Box>
                         {/* ============================================================================== */}
 
@@ -387,22 +362,6 @@ const LandingPage = () => {
                                 </li>
                             </Box>
                             {/* ================== */}
-                            <Button
-                                sx={{
-                                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                                    mt: 2.5,
-                                    borderRadius: '8px',
-                                    color: 'inherit',
-                                    width: '100%',
-                                    padding: '8px 16px', // Adjust padding of the button
-                                    fontSize: '1rem',
-                                    '&:hover': {
-                                        backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                                    },
-                                }}
-                            >
-                                Upgrade to Pro
-                            </Button>
                         </Box>
                     </Box>
                     {/* ============================================================================== */}
